@@ -6,6 +6,7 @@ use App\Product;
 use App\ProductStore;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Log;
 
 class ProductsController extends Controller
 {
@@ -39,10 +40,10 @@ class ProductsController extends Controller
             $product->save();
 
             // Save which stores has the product
-            foreach (json_decode($request->stores) as $store) {
+            foreach ($request->get("stores") as $store) {
                 $productStore = new ProductStore;
                 $productStore->product_id = $product->id;
-                $productStore->store_id = $store->id;
+                $productStore->store_id = $store;
                 $productStore->save();
             }
 
