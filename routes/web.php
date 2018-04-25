@@ -16,10 +16,6 @@ $router->get('/products/{id}', 'ProductsController@show');
 
 $router->post('/products', 'ProductsController@create');
 
-$router->get('/stores', function() {
-    return "Lista butiker";
-});
+$router->get('/stores', 'StoresController@index');
 
-$router->post('/reviews', function() {
-    return "Lista recensioner";
-});
+$router->get('/reviews', 'ReviewsController@index');
